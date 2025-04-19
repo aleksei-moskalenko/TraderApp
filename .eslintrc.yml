@@ -1,0 +1,163 @@
+env:
+  node: true
+  es2022: true
+parser: '@typescript-eslint/parser'
+root: true
+parserOptions:
+  ecmaVersion: '2023'
+  sourceType: module
+extends:
+  - 'plugin:@typescript-eslint/recommended'
+  - 'plugin:@typescript-eslint/eslint-recommended'
+plugins:
+  - node
+  - sonarjs
+  - import
+  - unicorn
+  - jest
+  - '@typescript-eslint'
+  - '@stylistic'
+rules:
+  '@stylistic/quotes':
+    - error
+    - single
+    - avoidEscape: true
+  '@stylistic/semi':
+    - error
+    - never
+  '@stylistic/space-before-blocks': error
+  '@stylistic/space-infix-ops': error
+  '@stylistic/indent':
+    - error
+    - 2
+  '@stylistic/no-multiple-empty-lines':
+    - error
+    - max: 1
+      maxEOF: 0
+      maxBOF: 0
+  '@typescript-eslint/naming-convention': error
+  '@stylistic/object-curly-spacing':
+    - error
+    - always
+  '@stylistic/array-bracket-newline':
+    - error
+    - consistent
+  '@stylistic/array-element-newline':
+    - error
+    - consistent
+  '@stylistic/arrow-spacing': error
+  '@stylistic/block-spacing': error
+  '@stylistic/brace-style': error
+  '@stylistic/comma-dangle': error
+  '@stylistic/comma-spacing': error
+  '@stylistic/comma-style': error
+  '@stylistic/computed-property-spacing': error
+  '@stylistic/dot-location':
+    - error
+    - property
+  '@stylistic/function-call-spacing': error
+  '@stylistic/generator-star-spacing':
+    - error
+    - before: false
+      after: true
+  '@stylistic/function-call-argument-newline':
+    - error
+    - consistent
+  '@stylistic/key-spacing':
+    - error
+    - beforeColon: false
+      afterColon: true
+      mode: strict
+      align: value
+  '@stylistic/keyword-spacing': error
+  '@stylistic/linebreak-style': error
+  '@stylistic/lines-between-class-members':
+    - error
+    - enforce:
+        - { blankLine: "always", prev: "*", next: "method" }
+  '@stylistic/member-delimiter-style':
+    - error
+    - multiline:
+        delimiter: none
+  '@stylistic/multiline-comment-style': error
+  '@stylistic/no-trailing-spaces': error
+  '@stylistic/no-whitespace-before-property': error
+  '@stylistic/nonblock-statement-body-position': error
+  '@stylistic/operator-linebreak':
+    - error
+    - before
+  '@stylistic/rest-spread-spacing': error
+  '@stylistic/space-before-function-paren':
+    - error
+    - named: never
+      anonymous: always
+      asyncArrow: always
+  '@stylistic/space-in-parens': error
+  '@stylistic/template-curly-spacing': error
+  '@stylistic/template-tag-spacing': error
+  '@stylistic/type-annotation-spacing':
+    - error
+  '@stylistic/type-generic-spacing': error
+  '@stylistic/type-named-tuple-spacing': error
+  '@typescript-eslint/no-unused-vars':
+    - error
+    - argsIgnorePattern: '^_'
+  node/no-deprecated-api: error
+  sonarjs/no-use-of-empty-return-value: error
+  sonarjs/non-existent-operator: error
+  sonarjs/no-collapsible-if: error
+  sonarjs/no-redundant-jump: error
+  sonarjs/no-identical-expressions: error
+  sonarjs/no-identical-conditions: error
+  sonarjs/no-identical-functions: error
+  sonarjs/no-nested-switch: error
+  sonarjs/no-nested-template-literals: warn
+  sonarjs/no-redundant-boolean: error
+  sonarjs/no-same-line-conditional: error
+  sonarjs/prefer-object-literal: error
+  sonarjs/prefer-single-boolean-return: error
+  sonarjs/prefer-while: error
+  sonarjs/no-empty-collection: error
+  sonarjs/no-extra-arguments: error
+  unicorn/custom-error-definition: error
+  unicorn/expiring-todo-comments: error
+  unicorn/filename-case:
+    - error
+    - case: kebabCase
+  unicorn/no-abusive-eslint-disable: error
+  unicorn/no-await-expression-member: error
+  unicorn/no-for-loop: error
+  unicorn/no-nested-ternary: error
+  unicorn/throw-new-error: error
+  unicorn/prevent-abbreviations: error
+  unicorn/prefer-optional-catch-binding: error
+  unicorn/prefer-number-properties: error
+  unicorn/prefer-export-from: error
+  unicorn/no-useless-spread: error
+  unicorn/no-unsafe-regex: error
+  unicorn/no-unreadable-array-destructuring: error
+  import/order:
+    - error
+    - groups:
+        - builtin
+        - external
+        - internal
+        - parent
+        - sibling
+        - index
+        - object
+        - type
+  import/newline-after-import: error
+  import/no-commonjs: error
+  '@typescript-eslint/no-this-alias': off
+  '@typescript-eslint/ban-ts-comment': off
+  eol-last:
+    - error
+    - always
+reportUnusedDisableDirectives: true
+overrides:
+  - files:
+      - '**/__tests__/**/*.(j|t)s?(x)'
+      - '**/?(*.)+(spec|test).(j|t)s?(x)'
+    env:
+      jest/globals: true
