@@ -1,13 +1,19 @@
-import { ConfigType, registerAs } from '@nestjs/config'
+import { registerAs } from '@nestjs/config'
 import { z } from 'zod'
+import { LevelWithSilent } from 'pino'
 import { fromEnvironment } from '../../../../lib/config/from-environment'
+import { isOneOf } from '../../../../lib/zod/refinements/is-one-of'
 
 export const appConfig = registerAs('app', () => {
   return fromEnvironment(z.object({
-    port: z.coerce.number().default(300)
+    port: z.coerce
+      .number()
+      .default(300),
+    logLevel: z.string()
+      .refine(...isOneOf(['fatal', 'error', 'warn', 'info', 'debug', 'trace', 'silent'] satisfies LevelWithSilent[]))
+      .default('debug')
   }), {
-    port: 'APP_PORT'
+    port:     'APP_PORT',
+    logLevel: 'APP_LOG_LEVEL'
   })
 })
-
-export type AppConfig = ConfigType<typeof appConfig>

@@ -1,10 +1,5 @@
-import { z, ZodUnknown } from 'zod'
-
-export type RenameMap = Record<string, string>
-
-type ShapeMap = Record<string, ZodUnknown>
-
-type TransformMap = Record<string, string>
+import { z } from 'zod'
+import { RenameMap, ShapeMap, TransformMap } from './rename.types'
 
 export function rename<T extends RenameMap>(map: T) {
   const shapeMap: ShapeMap = {}
@@ -17,12 +12,14 @@ export function rename<T extends RenameMap>(map: T) {
     transformMap[to] = from
   }
 
-  return z.object(shapeMap).transform(shape => {
-    const transformed = {} as Record<string, unknown>
-    for (const transformTo in transformMap) {
-      const transformFrom = transformMap[transformTo] as string
-      transformed[transformTo] = shape[transformFrom]
-    }
-    return transformed as Record<keyof T, unknown>
-  })
+  return z.object(shapeMap)
+    .partial()
+    .transform(shape => {
+      const transformed = {} as Record<string, unknown>
+      for (const transformTo in transformMap) {
+        const transformFrom = transformMap[transformTo] as string
+        transformed[transformTo] = shape[transformFrom]
+      }
+      return transformed as Record<keyof T, unknown>
+    })
 }
