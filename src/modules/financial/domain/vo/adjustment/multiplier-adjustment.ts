@@ -1,7 +1,7 @@
 import { Decimal } from 'decimal.js'
-import { Percent } from '../percent.js'
-import { GenericDomainError } from '../../../../../lib/errors/domain/generic-domain-error.js'
-import { IAdjustable } from './interfaces/adjustable.js'
+import { Percent } from '../percent'
+import { GenericDomainError } from '../../../../../lib/errors/domain/generic-domain-error'
+import { IAdjustable } from './interfaces/adjustable'
 
 export class MultiplierAdjustment {
   constructor(

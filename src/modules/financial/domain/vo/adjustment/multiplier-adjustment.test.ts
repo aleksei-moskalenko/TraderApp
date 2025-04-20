@@ -1,9 +1,9 @@
 import { test, describe } from 'node:test'
 import assert from 'node:assert'
 import { Decimal } from 'decimal.js'
-import { Price } from '../price.js'
-import { Percent } from '../percent.js'
-import { MultiplierAdjustment } from './multiplier-adjustment.js'
+import { Price } from '../price'
+import { Percent } from '../percent'
+import { MultiplierAdjustment } from './multiplier-adjustment'
 
 describe('MultiplierAdjustment', () => {
 

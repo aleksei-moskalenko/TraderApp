@@ -1,5 +1,5 @@
-import { Price } from '../../../domain/vo/price.js'
-import { CurrencyPair } from '../../../domain/vo/currency-pair.js'
+import { Price } from '../../../domain/vo/price'
+import { CurrencyPair } from '../../../domain/vo/currency-pair'
 
 export interface ICurrencyPairPriceRepository {
   getPrice(

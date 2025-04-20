@@ -1,9 +1,9 @@
-import { ICurrencyPairPriceRepository } from '../../../../financial/application/repository/interface/currency-pair-price.js'
-import { Quote } from '../../../domain/entity/quote.js'
-import { GenericApplicationError } from '../../../../../lib/errors/application/generic-application-error.js'
-import { QuoteService as QuoteDomainService } from '../../../domain/service/quote.js'
-import { ICommissionRepository } from '../../../../financial/application/repository/interface/commission.js'
-import { QuoteServiceGetForParameters as QuoteServiceGetForParameters } from './types.js'
+import { ICurrencyPairPriceRepository } from '../../../../financial/application/repository/interface/currency-pair-price'
+import { Quote } from '../../../domain/entity/quote'
+import { GenericApplicationError } from '../../../../../lib/errors/application/generic-application-error'
+import { QuoteService as QuoteDomainService } from '../../../domain/service/quote'
+import { ICommissionRepository } from '../../../../financial/application/repository/interface/commission'
+import { QuoteServiceGetForParameters as QuoteServiceGetForParameters } from './types'
 
 export class QuoteService {
   constructor(

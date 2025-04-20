@@ -1,4 +1,4 @@
-import { GenericDomainError } from '../../../../lib/errors/domain/generic-domain-error.js'
+import { GenericDomainError } from '../../../../lib/errors/domain/generic-domain-error'
 
 export class CurrencyPair {
   constructor(

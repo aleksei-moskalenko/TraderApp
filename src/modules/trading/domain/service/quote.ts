@@ -1,6 +1,6 @@
-import { MultiplierAdjustment } from '../../../financial/domain/vo/adjustment/multiplier-adjustment.js'
-import { Quote } from '../entity/quote.js'
-import { QuoteServiceCalculateQuoteParameters } from './quote.types.js'
+import { MultiplierAdjustment } from '../../../financial/domain/vo/adjustment/multiplier-adjustment'
+import { Quote } from '../entity/quote'
+import { QuoteServiceCalculateQuoteParameters } from './quote.types'
 
 export class QuoteService {
   calculateQuote(parameters: QuoteServiceCalculateQuoteParameters) {

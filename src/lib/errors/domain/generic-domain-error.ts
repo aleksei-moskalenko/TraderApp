@@ -1,4 +1,4 @@
-import { AppError, AppErrorCode, AppErrorData, AppErrorMessage, AppErrorOptions } from '../app/app.js'
+import { AppError, AppErrorCode, AppErrorData, AppErrorMessage, AppErrorOptions } from '../app/app'
 
 export class GenericDomainError<TCode extends AppErrorCode, TData extends AppErrorData> extends AppError<TCode, TData> {
   constructor(
