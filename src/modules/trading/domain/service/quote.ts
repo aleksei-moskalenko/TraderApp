@@ -4,12 +4,12 @@ import { QuoteServiceCalculateQuoteParameters } from './quote.types'
 
 export class QuoteService {
   calculateQuote(parameters: QuoteServiceCalculateQuoteParameters) {
-    const { commission, initialPrice, currencyPair } = parameters
+    const { commission, initialAskPrice, initialBidPrice, currencyPair } = parameters
     const bidMultiplier = MultiplierAdjustment.fromPercentsShift(commission)
     const askMultiplier = MultiplierAdjustment.fromPercentsShift(commission)
 
-    const bidPrice = bidMultiplier.applyTo(initialPrice)
-    const askPrice = askMultiplier.applyTo(initialPrice)
+    const askPrice = askMultiplier.applyTo(initialAskPrice)
+    const bidPrice = bidMultiplier.applyTo(initialBidPrice)
 
     const quote = new Quote(currencyPair, bidPrice, askPrice)
 

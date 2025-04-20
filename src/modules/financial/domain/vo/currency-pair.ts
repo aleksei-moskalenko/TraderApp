@@ -2,10 +2,14 @@ import { GenericDomainError } from '../../../../lib/errors/domain/generic-domain
 
 export class CurrencyPair {
   constructor(
-    public readonly value: string
+    protected readonly value: string
   ) {
     if (value.toUpperCase() !== value) {
       throw new GenericDomainError('CurrencyPair must be uppercase', 'CURRENCY_PAIR_VALIDATION_UPPER_CASE', { value })
     }
+  }
+
+  valueOf(): string {
+    return this.value
   }
 }

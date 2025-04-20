@@ -1,8 +1,8 @@
-import { Price } from '../../../domain/vo/price'
 import { CurrencyPair } from '../../../domain/vo/currency-pair'
+import { BookPrice } from '../dto/book-price'
 
 export interface ICurrencyPairPriceRepository {
-  getPrice(
+  getBookPrice(
     currencyPair: CurrencyPair
-  ): Promise<Price | null>
+  ): Promise<BookPrice | null>
 }

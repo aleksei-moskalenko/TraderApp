@@ -3,7 +3,8 @@ import { Price } from '../../../financial/domain/vo/price'
 import { Commission } from '../../../financial/domain/vo/commission'
 
 export type QuoteServiceCalculateQuoteParameters = {
-  currencyPair: CurrencyPair
-  initialPrice: Price
-  commission:   Commission
+  currencyPair:    CurrencyPair
+  initialBidPrice: Price
+  initialAskPrice: Price
+  commission:      Commission
 }
