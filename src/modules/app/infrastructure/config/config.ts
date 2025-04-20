@@ -4,7 +4,9 @@ import { LevelWithSilent } from 'pino'
 import { fromEnvironment } from '../../../../lib/config/from-environment'
 import { isOneOf } from '../../../../lib/zod/refinements/is-one-of'
 
-export const appConfig = registerAs('app', () => {
+export const APP_CONFIG_KEY = 'app'
+
+export const appConfig = registerAs(APP_CONFIG_KEY, () => {
   return fromEnvironment(z.object({
     port: z.coerce
       .number()
