@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { LoggerModule, Params } from 'nestjs-pino'
-import { appConfig } from './infrastructure/config/config'
-import { AppConfig } from './infrastructure/config/config.types'
+import { appConfig } from './infrastructure/config/config.js'
+import { AppConfig } from './infrastructure/config/config.types.js'
 
 @Module({
   imports: [

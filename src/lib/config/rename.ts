@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { RenameMap, ShapeMap, TransformMap } from './rename.types'
+import { RenameMap, ShapeMap, TransformMap } from './rename.types.js'
 
 export function rename<T extends RenameMap>(map: T) {
   const shapeMap: ShapeMap = {}

@@ -1,6 +1,6 @@
 import { AnyZodObject } from 'zod'
-import { rename } from './rename'
-import { RenameMap } from './rename.types'
+import { rename } from './rename.js'
+import { RenameMap } from './rename.types.js'
 
 export function fromEnvironment<TRenameMap extends RenameMap, TSchema extends AnyZodObject>(schema: TSchema, renameMap?: TRenameMap): TSchema['_output'] {
   return renameMap
