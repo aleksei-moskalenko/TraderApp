@@ -14,7 +14,6 @@ plugins:
   - sonarjs
   - import
   - unicorn
-  - jest
   - '@typescript-eslint'
   - '@stylistic'
 rules:
@@ -155,9 +154,3 @@ rules:
     - error
     - always
 reportUnusedDisableDirectives: true
-overrides:
-  - files:
-      - '**/__tests__/**/*.(j|t)s?(x)'
-      - '**/?(*.)+(spec|test).(j|t)s?(x)'
-    env:
-      jest/globals: true
