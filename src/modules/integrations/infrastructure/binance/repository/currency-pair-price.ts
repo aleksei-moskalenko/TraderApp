@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { ICurrencyPairPriceRepository } from '../../../../financial/application/repository/interface/currency-pair-price'
 import { CurrencyPair } from '../../../../financial/domain/vo/currency-pair'
 import { BookPrice } from '../../../../financial/application/repository/dto/book-price'
-import { getApiV3TickerBookTicker } from '../api-client/raw-client'
+import { getApiV3TickerBookTicker } from '../api-client/client'
 import { GenericInfrastructureError } from '../../../../../lib/errors/infrastructure/generic-infrastructure-error'
 import { Price } from '../../../../financial/domain/vo/price'
 
