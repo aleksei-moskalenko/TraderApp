@@ -1,11 +1,11 @@
-import { AppError, AppErrorCode, AppErrorData, AppErrorMessage, AppErrorOptions } from '../app/app'
+import { RootError, RootErrorCode, RootErrorData, RootErrorMessage, RootErrorOptions } from '../root-error/root-error'
 
-export class GenericDomainError<TCode extends AppErrorCode, TData extends AppErrorData> extends AppError<TCode, TData> {
+export class GenericDomainError<TCode extends RootErrorCode, TData extends RootErrorData> extends RootError<TCode, TData> {
   constructor(
-    message: AppErrorMessage,
+    message: RootErrorMessage,
     code: TCode,
     data?: TData,
-    options?: AppErrorOptions
+    options?: RootErrorOptions
   ) {
     super(message, code, data, options)
     this.name = 'GenericDomainError'
