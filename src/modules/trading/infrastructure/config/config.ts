@@ -6,7 +6,7 @@ export const TRADING_CONFIG_KEY = 'trading' as const
 
 export const tradingConfig = registerAs(TRADING_CONFIG_KEY, () => {
   return fromEnvironment(z.object({
-    commissionBTCUSDT:    z.string().default('10%'),
+    commissionBTCUSDT:    z.string().default('1%'),
     quoteUpdateFrequency: z.coerce.number().default(10_000)
   }), {
     commissionBTCUSDT: 'TRADING_COMMISSION_BTCUSDT'

@@ -1,4 +1,5 @@
 import { ConfigService } from '@nestjs/config'
+import { Injectable } from '@nestjs/common'
 import { TradingConfig } from '../config/types'
 import { ICommissionRepository } from '../../../financial/application/repository/interface/commission'
 import { CurrencyPair } from '../../../financial/domain/vo/currency-pair'
@@ -6,6 +7,7 @@ import { CryptoCurrencyPair } from '../../../financial/domain/constants/crypto-c
 import { Commission } from '../../../financial/domain/vo/commission'
 import { TRADING_CONFIG_KEY } from '../config/config'
 
+@Injectable()
 export class ConfigCommissionRepository implements ICommissionRepository {
   protected readonly config: TradingConfig
 

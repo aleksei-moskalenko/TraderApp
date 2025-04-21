@@ -10,7 +10,7 @@ export const appConfig = registerAs(APP_CONFIG_KEY, () => {
   return fromEnvironment(z.object({
     port: z.coerce
       .number()
-      .default(300),
+      .default(3002),
     logLevel: z.string()
       .refine(...isOneOf(['fatal', 'error', 'warn', 'info', 'debug', 'trace', 'silent'] satisfies LevelWithSilent[]))
       .default('debug')

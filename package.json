@@ -4,7 +4,6 @@
   "description": "",
   "author": "Aleksei Moskalenko",
   "private": false,
-  "type": "module",
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",
@@ -24,6 +23,7 @@
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.0.20",
     "@nestjs/platform-express": "^11.0.20",
+    "@nestjs/swagger": "^11.1.4",
     "cache-manager": "^6.4.2",
     "decimal.js": "^10.5.0",
     "nestjs-pino": "^4.4.0",

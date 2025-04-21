@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { LoggerModule, Params } from 'nestjs-pino'
+import { TradingModule } from '../trading/module'
 import { appConfig } from './infrastructure/config/config'
 import { AppConfig } from './infrastructure/config/config.types'
 
@@ -19,7 +20,8 @@ import { AppConfig } from './infrastructure/config/config.types'
       },
       inject: [ConfigService]
     }),
-    ConfigModule.forFeature(appConfig)
+    ConfigModule.forFeature(appConfig),
+    TradingModule
   ],
   controllers: [],
   providers:   []
