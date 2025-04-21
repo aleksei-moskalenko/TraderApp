@@ -2,7 +2,7 @@ import { Decimal } from 'decimal.js'
 import { GenericDomainError } from '../../../../lib/errors/domain/generic-domain-error'
 import { Percent } from './percent.js'
 
-export class Commission extends Percent {
+export class PercentCommission extends Percent {
   constructor(
     value: Decimal
   ) {

@@ -1,6 +1,6 @@
 import { CurrencyPair } from '../../../domain/vo/currency-pair'
-import { Commission } from '../../../domain/vo/commission'
+import { PercentCommission } from '../../../domain/vo/percent-commission'
 
 export interface ICommissionRepository {
-  getFor(currencyPair: CurrencyPair): Promise<Commission | null>
+  getFor(currencyPair: CurrencyPair): Promise<PercentCommission | null>
 }
