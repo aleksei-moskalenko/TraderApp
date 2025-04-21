@@ -53,5 +53,23 @@ $ pnpm run start:prod
 
 ## Or just...
 ```bash
-docker compose up -d && pnpm dlx open-cli http://localhost:3002/api
+docker compose up -d --env-file .env && pnpm dlx open-cli http://localhost:3002/api
 ```
+
+## What can be done better:
+- I use generic exceptions, to which all necessary parameters are passed. However, this system can be corrected and instances of exception classes can be created, where both basic categories and error codes and so on will be stored.
+- The interceptor that validates the input and output DTO is not implemented. This could be a class-validator, but I prefer to create DTOs through a custom interceptor and through zod validation.
+```typescript
+class CreateUserDTO {
+  
+  static fromPojo(data:unknown){
+    const validated = z.object({
+      name: z.string(),
+      age: z.number()
+    }).parse(data)
+    
+    return new CreateUserDTO(validated)
+  }
+}
+```
+- It may be worthwhile to calculate a fresh quote in background mode, but this will add to the network load and the possible cost of requests.

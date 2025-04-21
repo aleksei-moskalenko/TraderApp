@@ -1,6 +1,8 @@
 services:
   app:
     image: trader-app:latest
+    env_file:
+      - .env
     build: .
     ports:
-      - 3002:3002
+      - 3002:${APP_PORT}
