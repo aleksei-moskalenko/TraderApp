@@ -1,0 +1,6 @@
+services:
+  app:
+    image: trader-app:latest
+    build: .
+    ports:
+      - 3002:3002
