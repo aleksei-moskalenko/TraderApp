@@ -1,35 +1,28 @@
-import { Inject } from '@nestjs/common'
-import { Cache } from '@nestjs/cache-manager'
 import { Quote } from '../../../domain/entity/quote'
+import { CurrencyPair } from '../../../../financial/domain/vo/currency-pair'
 import { ConfigCommissionRepository } from '../../../infrastructure/repository/comission'
 import {
   BinanceCurrencyPairPriceRepository
 } from '../../../../integrations/infrastructure/binance/repository/currency-pair-price'
-import { IQuoteBTCUSDTBinanceConfigCommissionUseCaseConfig } from './interface/config'
-import { QUOTE_BTCUSDT_BINANCE_CONFIG_COMMISSION_CONFIG } from './di'
-import { QuoteBTCUSDTBinanceConfigCommissionUseCase } from './quote-btcusdt-binance-config-commission-cached'
-import { QUOTE_CACHE_KEY } from './constants'
+import { QuoteService as QuoteDomainService } from '../../../domain/service/quote'
+import { QuoteService } from '../../service/quote/quote'
+import { CryptoCurrencyPair } from '../../../../financial/domain/constants/crypto-currency-pair'
 
-export class QuoteBTCUSDTBinanceConfigCommissionUseCaseCached extends QuoteBTCUSDTBinanceConfigCommissionUseCase {
+export class QuoteBTCUSDTBinanceConfigCommissionUseCase {
+  protected readonly quoteService: QuoteService
+
   constructor(
     commissionService: ConfigCommissionRepository,
-    currencyPairRepository: BinanceCurrencyPairPriceRepository,
-    @Inject(QUOTE_BTCUSDT_BINANCE_CONFIG_COMMISSION_CONFIG) protected config: IQuoteBTCUSDTBinanceConfigCommissionUseCaseConfig,
-    protected cacheManager: Cache
+    currencyPairRepository: BinanceCurrencyPairPriceRepository
   ) {
-    super(commissionService, currencyPairRepository)
+    this.quoteService = new QuoteService(currencyPairRepository, commissionService, new QuoteDomainService())
   }
 
-  override async run(): Promise<Quote> {
-    const cached = await this.cacheManager.get<Quote>(QUOTE_CACHE_KEY)
+  async run(): Promise<Quote> {
 
-    if (cached) {
-      return cached
-    }
+    const currencyPair = new CurrencyPair(CryptoCurrencyPair.BTCUSDT)
 
-    const quote = await super.run()
-
-    await this.cacheManager.set(QUOTE_CACHE_KEY, quote, this.config.quoteUpdateFrequency)
+    const quote = await this.quoteService.getFor({ currencyPair })
 
     return quote
   }

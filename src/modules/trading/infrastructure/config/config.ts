@@ -9,6 +9,7 @@ export const tradingConfig = registerAs(TRADING_CONFIG_KEY, () => {
     commissionBTCUSDT:    z.string().default('1%'),
     quoteUpdateFrequency: z.coerce.number().default(10_000)
   }), {
-    commissionBTCUSDT: 'TRADING_COMMISSION_BTCUSDT'
+    commissionBTCUSDT:    'TRADING_COMMISSION_BTCUSDT',
+    quoteUpdateFrequency: 'TRADING_QUOTE_UPDATE_FREQUENCY'
   })
 })

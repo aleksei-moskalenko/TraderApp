@@ -2,7 +2,7 @@ import { Controller, Get } from '@nestjs/common'
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger'
 import {
   QuoteBTCUSDTBinanceConfigCommissionUseCase
-} from '../../../application/use-cases/quote-btcusdt-binance-config-commission/quote-btcusdt-binance-config-commission-cached'
+} from '../../../application/use-cases/quote-btcusdt-binance-config-commission/quote-btcusdt-binance-config-commission'
 import { GetBTCUSDTQuoteResponse } from './dto/get-btcusdt-quote-response'
 
 @ApiTags('Trading - Spot')

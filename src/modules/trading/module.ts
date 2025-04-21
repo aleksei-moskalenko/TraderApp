@@ -8,10 +8,10 @@ import { TRADING_CONFIG_KEY, tradingConfig } from './infrastructure/config/confi
 import { ConfigCommissionRepository } from './infrastructure/repository/comission'
 import {
   QuoteBTCUSDTBinanceConfigCommissionUseCase
-} from './application/use-cases/quote-btcusdt-binance-config-commission/quote-btcusdt-binance-config-commission-cached'
+} from './application/use-cases/quote-btcusdt-binance-config-commission/quote-btcusdt-binance-config-commission'
 import {
   QuoteBTCUSDTBinanceConfigCommissionUseCaseCached
-} from './application/use-cases/quote-btcusdt-binance-config-commission/quote-btcusdt-binance-config-commission'
+} from './application/use-cases/quote-btcusdt-binance-config-commission/cached/quote-btcusdt-binance-config-commission-cached'
 import {
   QUOTE_BTCUSDT_BINANCE_CONFIG_COMMISSION_CONFIG
 } from './application/use-cases/quote-btcusdt-binance-config-commission/di'
