@@ -1,5 +1,6 @@
 import { Cache } from '@nestjs/cache-manager'
 import { Quote } from '../../../../domain/entity/quote'
+import { SingletonRunner } from '../../../../../../lib/common/singletone-runner'
 import { QUOTE_CACHE_KEY } from './constants'
 import { QuoteSerializer } from './quote-serializer'
 
@@ -17,9 +18,11 @@ export class CacheManager {
     if (cached) {
       return cached
     }
-    const newEntry = await callback()
-    await this.saveCache(newEntry)
-    return newEntry
+    return CacheManager.singletonRunner.run(async () => {
+      const newEntry = await callback()
+      await this.saveCache(newEntry)
+      return newEntry
+    })
   }
 
   protected async saveCache(quote: Quote) {
@@ -34,4 +37,6 @@ export class CacheManager {
     }
     return this.serializer.deserialize(cachedUnserialized)
   }
+
+  protected static singletonRunner = new SingletonRunner<Quote>()
 }
