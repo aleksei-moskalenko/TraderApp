@@ -50,3 +50,8 @@ $ pnpm run start:dev
 # production mode
 $ pnpm run start:prod
 ```
+
+## Or just...
+```bash
+docker compose up -d && pnpm dlx open-cli http://localhost:3002/api
+```
