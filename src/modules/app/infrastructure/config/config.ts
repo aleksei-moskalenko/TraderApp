@@ -9,11 +9,9 @@ export const APP_CONFIG_KEY = 'app'
 export const appConfig = registerAs(APP_CONFIG_KEY, () => {
   return fromEnvironment(z.object({
     port: z.coerce
-      .number()
-      .default(3002),
+      .number(),
     logLevel: z.string()
       .refine(...isOneOf(['fatal', 'error', 'warn', 'info', 'debug', 'trace', 'silent'] satisfies LevelWithSilent[]))
-      .default('debug')
   }), {
     port:     'APP_PORT',
     logLevel: 'APP_LOG_LEVEL'
