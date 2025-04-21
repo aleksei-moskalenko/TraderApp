@@ -1,22 +1,15 @@
-import { Inject, Injectable } from '@nestjs/common'
 import { ICurrencyPairPriceRepository } from '../../../../financial/application/repository/interface/currency-pair-price'
 import { Quote } from '../../../domain/entity/quote'
 import { GenericApplicationError } from '../../../../../lib/errors/application/generic-application-error'
 import { QuoteService as QuoteDomainService } from '../../../domain/service/quote'
 import { ICommissionRepository } from '../../../../financial/application/repository/interface/commission'
 import { QuoteServiceGetForParameters as QuoteServiceGetForParameters } from './types'
-import {
-  QUOTE_SERVICE_COMMISSION_REPOSITORY,
-  QUOTE_SERVICE_CURRENCY_PAIR_PRICE_REPOSITORY,
-  QUOTE_SERVICE_QUOTE_SERVICE
-} from './di'
 
-@Injectable()
 export class QuoteService {
   constructor(
-    @Inject(QUOTE_SERVICE_CURRENCY_PAIR_PRICE_REPOSITORY) protected readonly currencyPairPriceRepository: ICurrencyPairPriceRepository,
-    @Inject(QUOTE_SERVICE_COMMISSION_REPOSITORY) protected readonly commissionRepository: ICommissionRepository,
-    @Inject(QUOTE_SERVICE_QUOTE_SERVICE) protected readonly quoteService: QuoteDomainService
+    protected readonly currencyPairPriceRepository: ICurrencyPairPriceRepository,
+    protected readonly commissionRepository: ICommissionRepository,
+    protected readonly quoteService: QuoteDomainService
   ) {}
 
   async getFor(parameters: QuoteServiceGetForParameters): Promise<Quote> {

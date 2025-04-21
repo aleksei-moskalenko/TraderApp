@@ -1,0 +1,1 @@
+export const CURRENCY_PAIR_BTCUSDT = 'BTCUSDT'
