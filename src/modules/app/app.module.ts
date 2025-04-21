@@ -1,3 +1,4 @@
+import { randomUUID } from 'crypto'
 import { Module } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { LoggerModule, Params } from 'nestjs-pino'
@@ -14,7 +15,7 @@ import { AppConfig } from './infrastructure/config/config.types'
         return {
           pinoHttp: {
             level:    config.logLevel,
-            genReqId: (request) => request.headers['x-request-id'] || request.id
+            genReqId: (request) => request.headers['x-request-id'] || randomUUID()
           }
         }
       },
