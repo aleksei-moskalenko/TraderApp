@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
+import { CacheModule } from '@nestjs/cache-manager'
 import { IntegrationsModule } from '../integrations/integrations.module'
 import { SpotTradingController } from './infrastructure/http/spot/controller'
 import { tradingConfig } from './infrastructure/config/config'
@@ -10,6 +11,7 @@ import { ConfigCommissionRepository } from './infrastructure/repository/comissio
 
 @Module({
   imports: [
+    CacheModule.register(),
     IntegrationsModule,
     ConfigModule.forFeature(tradingConfig)
   ],
