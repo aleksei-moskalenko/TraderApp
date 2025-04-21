@@ -8,6 +8,8 @@ import { AppConfig } from './infrastructure/config/config.types'
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
+    ConfigModule.forFeature(appConfig),
     LoggerModule.forRootAsync({
       imports: [ConfigModule.forFeature(appConfig)],
       useFactory(configService: ConfigService): Params {
@@ -21,7 +23,6 @@ import { AppConfig } from './infrastructure/config/config.types'
       },
       inject: [ConfigService]
     }),
-    ConfigModule.forFeature(appConfig),
     TradingModule
   ],
   controllers: [],

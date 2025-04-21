@@ -26,9 +26,7 @@ export class MultiplierAdjustment {
 
   static fromPercentsShift(value: Percent) {
     const decimal = new Decimal(value.valueOf())
-    let multiplier = decimal
-
-    multiplier = multiplier.div(100)
+    const multiplier = decimal.div(100)
 
     return new MultiplierAdjustment(multiplier)
   }

@@ -1,9 +1,9 @@
 import { registerAs } from '@nestjs/config'
 import { z } from 'zod'
-import * as ms from 'ms'
+import ms from 'ms'
 import { fromEnvironment } from '../../../../lib/config/from-environment'
 
-export const TRADING_CONFIG_KEY = 'trading' as const
+export const TRADING_CONFIG_KEY = Symbol('trading')
 
 export const tradingConfig = registerAs(TRADING_CONFIG_KEY, () => {
   return fromEnvironment(z.object({

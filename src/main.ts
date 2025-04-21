@@ -6,8 +6,11 @@ import { setupLogger } from './main/logger'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { bufferLogs: true })
+
   setupLogger(app)
+
   setupOpenapi(app)
+
   await setupHttp(app)
 }
 bootstrap()
