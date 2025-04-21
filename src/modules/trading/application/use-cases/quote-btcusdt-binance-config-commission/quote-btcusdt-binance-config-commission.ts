@@ -1,34 +1,35 @@
 import { Inject } from '@nestjs/common'
+import { Cache } from '@nestjs/cache-manager'
 import { Quote } from '../../../domain/entity/quote'
-import { CurrencyPair } from '../../../../financial/domain/vo/currency-pair'
 import { ConfigCommissionRepository } from '../../../infrastructure/repository/comission'
 import {
   BinanceCurrencyPairPriceRepository
 } from '../../../../integrations/infrastructure/binance/repository/currency-pair-price'
-import { QuoteService as QuoteDomainService } from '../../../domain/service/quote'
-import { QuoteService } from '../../service/quote/quote'
-import { UseCache } from '../../../../../lib/nest/cache/decorators/cache'
-import { CURRENCY_PAIR_BTCUSDT } from './constants'
-import { QUOTE_BTCUSDT_BINANCE_CONFIG_COMMISSION_CONFIG } from './di'
 import { IQuoteBTCUSDTBinanceConfigCommissionUseCaseConfig } from './interface/config'
+import { QUOTE_BTCUSDT_BINANCE_CONFIG_COMMISSION_CONFIG } from './di'
+import { QuoteBTCUSDTBinanceConfigCommissionUseCase } from './quote-btcusdt-binance-config-commission-cached'
+import { QUOTE_CACHE_KEY } from './constants'
 
-export class QuoteBTCUSDTBinanceConfigCommissionUseCase {
-  protected readonly quoteService: QuoteService
-
+export class QuoteBTCUSDTBinanceConfigCommissionUseCaseCached extends QuoteBTCUSDTBinanceConfigCommissionUseCase {
   constructor(
     commissionService: ConfigCommissionRepository,
     currencyPairRepository: BinanceCurrencyPairPriceRepository,
-    @Inject(QUOTE_BTCUSDT_BINANCE_CONFIG_COMMISSION_CONFIG) protected config: IQuoteBTCUSDTBinanceConfigCommissionUseCaseConfig
+    @Inject(QUOTE_BTCUSDT_BINANCE_CONFIG_COMMISSION_CONFIG) protected config: IQuoteBTCUSDTBinanceConfigCommissionUseCaseConfig,
+    protected cacheManager: Cache
   ) {
-    this.quoteService = new QuoteService(currencyPairRepository, commissionService, new QuoteDomainService())
+    super(commissionService, currencyPairRepository)
   }
 
-  @UseCache(() => this.config)
-  async run(): Promise<Quote> {
+  override async run(): Promise<Quote> {
+    const cached = await this.cacheManager.get<Quote>(QUOTE_CACHE_KEY)
 
-    const currencyPair = new CurrencyPair(CURRENCY_PAIR_BTCUSDT)
+    if (cached) {
+      return cached
+    }
 
-    const quote = await this.quoteService.getFor({ currencyPair })
+    const quote = await super.run()
+
+    await this.cacheManager.set(QUOTE_CACHE_KEY, quote, this.config.quoteUpdateFrequency)
 
     return quote
   }

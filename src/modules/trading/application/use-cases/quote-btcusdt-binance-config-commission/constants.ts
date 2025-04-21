@@ -1,1 +1,1 @@
-export const CURRENCY_PAIR_BTCUSDT = 'BTCUSDT'
+export const QUOTE_CACHE_KEY = 'quote-btcusdt-binance-config-commission'
