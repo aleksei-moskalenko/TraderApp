@@ -5,6 +5,8 @@ import { BookPrice } from '../../../../financial/application/repository/dto/book
 import { getApiV3TickerBookTicker } from '../api-client/client'
 import { GenericInfrastructureError } from '../../../../../lib/errors/infrastructure/generic-infrastructure-error'
 import { Price } from '../../../../financial/domain/vo/price'
+import { ValidationCategory } from '../../../../../lib/errors/categories/validation'
+import { ExternalServiceCategory } from '../../../../../lib/errors/categories/external-service'
 
 @Injectable()
 export class BinanceCurrencyPairPriceRepository implements ICurrencyPairPriceRepository {
@@ -18,7 +20,7 @@ export class BinanceCurrencyPairPriceRepository implements ICurrencyPairPriceRep
       })
 
       if (!response.data || Array.isArray(response.data)) {
-        throw new GenericInfrastructureError('Binance API error', 'BINANCE_SPOT_API_BOOK_PRICE_FORMAT_ERROR', { currencyPair, response })
+        throw new GenericInfrastructureError('Binance API error', 'BINANCE_SPOT_API_BOOK_PRICE_FORMAT_ERROR', [new ValidationCategory([new ExternalServiceCategory()])], { currencyPair, response })
       }
 
       return {
@@ -28,7 +30,7 @@ export class BinanceCurrencyPairPriceRepository implements ICurrencyPairPriceRep
       }
 
     } catch (error) {
-      throw new GenericInfrastructureError('Binance API error', 'BINANCE_SPOT_API_BOOK_PRICE_ERROR', { currencyPair }, { cause: error })
+      throw new GenericInfrastructureError('Binance API error', 'BINANCE_SPOT_API_BOOK_PRICE_ERROR', [new ExternalServiceCategory()], { currencyPair }, { cause: error })
     }
   }
 }

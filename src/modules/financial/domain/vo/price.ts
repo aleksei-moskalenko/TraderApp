@@ -1,12 +1,13 @@
 import { Decimal } from 'decimal.js'
 import { GenericDomainError } from '../../../../lib/errors/domain/generic-domain-error'
+import { ValidationCategory } from '../../../../lib/errors/categories/validation'
 
 export class Price {
   protected value: Decimal
 
   protected constructor(value: Decimal) {
     if (value.isNeg()) {
-      throw new GenericDomainError('Price cannot be negative', 'PRICE_VALIDATION_NOT_NEGATIVE', { value })
+      throw new GenericDomainError('Price cannot be negative', 'PRICE_VALIDATION_NOT_NEGATIVE', [new ValidationCategory()], { value })
     }
     this.value = new Decimal(value)
   }
@@ -45,7 +46,7 @@ export class Price {
     const decimal = new Decimal(source)
 
     if (decimal.isNaN()) {
-      throw new GenericDomainError('Invalid Price value', 'PRICE_VALIDATION_INVALID_STRING', { source })
+      throw new GenericDomainError('Invalid Price value', 'PRICE_VALIDATION_INVALID_STRING', [new ValidationCategory()], { source })
     }
 
     return new Price(decimal)

@@ -1,5 +1,6 @@
 import { Decimal } from 'decimal.js'
 import { GenericDomainError } from '../../../../lib/errors/domain/generic-domain-error'
+import { ValidationCategory } from '../../../../lib/errors/categories/validation'
 
 export class Percent {
   constructor(
@@ -17,7 +18,7 @@ export class Percent {
     const decimal = new Decimal(value)
 
     if (decimal.isNaN()) {
-      throw new GenericDomainError('Invalid Percent value', 'PERCENT_VALIDATION_INVALID_STRING', { source })
+      throw new GenericDomainError('Invalid Percent value', 'PERCENT_VALIDATION_INVALID_STRING', [new ValidationCategory()], { source })
     }
 
     return new Percent(decimal)

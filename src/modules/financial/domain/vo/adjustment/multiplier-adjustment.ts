@@ -1,6 +1,7 @@
 import { Decimal } from 'decimal.js'
 import { Percent } from '../percent'
 import { GenericDomainError } from '../../../../../lib/errors/domain/generic-domain-error'
+import { ValidationCategory } from '../../../../../lib/errors/categories/validation'
 import { IAdjustable } from './interfaces/adjustable'
 
 export class MultiplierAdjustment {
@@ -19,7 +20,7 @@ export class MultiplierAdjustment {
     const decimal = new Decimal(source)
 
     if (decimal.isNaN()) {
-      throw new GenericDomainError('Invalid percent value', 'PERCENT_VALIDATION_INVALID_STRING', { source })
+      throw new GenericDomainError('Invalid percent value', 'PERCENT_VALIDATION_INVALID_STRING', [new ValidationCategory()], { source })
     }
     return new MultiplierAdjustment(decimal)
   }
