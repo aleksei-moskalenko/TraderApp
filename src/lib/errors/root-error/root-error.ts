@@ -22,13 +22,13 @@ export class RootError<
     this.name = 'RootError'
   }
 
-  isCategory(category: IErrorCategory, subcategory: boolean): boolean {
+  isCategoryOf(givenCategory: IErrorCategory, inSubcategories: boolean = false): boolean {
     return this.categories.some(thisCategory => {
-      const isThisCategoryMatched = thisCategory.kind === category.kind
-      if (!subcategory) {
+      const isThisCategoryMatched = thisCategory.kind === givenCategory.kind
+      if (!inSubcategories) {
         return isThisCategoryMatched
       }
-      const isThisSubcategoryMatched = thisCategory.isSubCategoryOf(thisCategory)
+      const isThisSubcategoryMatched = thisCategory.isSubCategoryOf(givenCategory)
       return isThisSubcategoryMatched
     })
   }
