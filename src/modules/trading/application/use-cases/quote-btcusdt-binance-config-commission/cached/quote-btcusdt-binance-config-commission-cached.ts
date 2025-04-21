@@ -16,11 +16,11 @@ export class QuoteBTCUSDTBinanceConfigCommissionUseCaseCached extends QuoteBTCUS
   constructor(
     commissionService: ConfigCommissionRepository,
     currencyPairRepository: BinanceCurrencyPairPriceRepository,
-    @Inject(QUOTE_BTCUSDT_BINANCE_CONFIG_COMMISSION_CONFIG) protected config: IQuoteBTCUSDTBinanceConfigCommissionUseCaseConfig,
+    @Inject(QUOTE_BTCUSDT_BINANCE_CONFIG_COMMISSION_CONFIG) config: IQuoteBTCUSDTBinanceConfigCommissionUseCaseConfig,
     protected cacheStorage: Cache
   ) {
     super(commissionService, currencyPairRepository)
-    this.cacheManager = new CacheManager(cacheStorage)
+    this.cacheManager = new CacheManager(cacheStorage, config.quoteUpdateFrequency)
   }
 
   override async run(): Promise<Quote> {

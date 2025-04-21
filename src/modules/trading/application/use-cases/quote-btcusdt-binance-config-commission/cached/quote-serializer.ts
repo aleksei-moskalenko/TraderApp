@@ -1,4 +1,4 @@
-import v8 from 'node:v8'
+import * as v8 from 'node:v8'
 import { Quote } from '../../../../domain/entity/quote'
 import { CurrencyPair } from '../../../../../financial/domain/vo/currency-pair'
 import { Price } from '../../../../../financial/domain/vo/price'

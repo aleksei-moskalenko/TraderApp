@@ -7,7 +7,8 @@ export class CacheManager {
   private readonly serializer = new QuoteSerializer()
 
   constructor(
-    private readonly cacheStorage: Cache
+    private readonly cacheStorage: Cache,
+    private readonly ttl: number
   ) {
   }
 
@@ -23,7 +24,7 @@ export class CacheManager {
 
   protected async saveCache(quote: Quote) {
     const serialized = this.serializer.serialize(quote)
-    await this.cacheStorage.set<string>(QUOTE_CACHE_KEY, serialized)
+    await this.cacheStorage.set<string>(QUOTE_CACHE_KEY, serialized, this.ttl)
   }
 
   protected async getCache() {
