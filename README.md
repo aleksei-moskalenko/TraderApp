@@ -34,6 +34,12 @@ Upload the result to GitHub.
 
 ## Project setup
 
+
+## Install dependencies
+
+- NVM and Node `lts/jod`
+- Enable corepack
+- Install dependencies with `pnpm`
 ```bash
 $ pnpm install
 ```
@@ -53,7 +59,7 @@ $ pnpm run start:prod
 
 ## Or just...
 ```bash
-docker compose up -d --env-file .env && pnpm dlx open-cli http://localhost:3002/api
+docker compose --env-file .env up -d && pnpm dlx open-cli http://localhost:3002/api
 ```
 
 ## What can be done better:

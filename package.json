@@ -4,15 +4,14 @@
   "description": "",
   "author": "Aleksei Moskalenko",
   "private": false,
-  "license": "UNLICENSED",
   "main": "dist/main.js",
   "scripts": {
     "build": "nest build",
     "lint": "eslint \"src/**/*.ts\" --max-warnings=0",
     "typecheck": "tsc --noEmit",
-    "start": "nest start | pino-pretty",
+    "start": "nest start",
     "start:dev": "nest start --watch | pino-pretty",
-    "start:debug": "nest start --debug --watch",
+    "start:debug": "nest start --debug --watch | pino-pretty",
     "start:prod": "node dist/main",
     "test:unit": "tsx --test --no-experimental-strip-types",
     "prepare": "husky || true"
